@@ -74,7 +74,6 @@ const datos = [
     {"carrera": "Diseño Digital Y Web", "institucion": "Ip Inacap", "tipo": "IP", "acreditacion": "7 años", "region": "Metropolitana", "arancel": "$2.921.000"},
     {"carrera": "Diseño Digital Y Web", "institucion": "Ip Inacap", "tipo": "IP", "acreditacion": "7 años", "region": "Metropolitana", "arancel": "$2.921.000"},
     {"carrera": "Diseño Digital Y Web", "institucion": "Ip Inacap", "tipo": "IP", "acreditacion": "7 años", "region": "Metropolitana", "arancel": "$2.921.000"},
-    {"carrera": "Diseño Digital Y Web", "institucion": "Ip Inacap", "tipo": "IP", "acreditacion": "7 años", "region": "Metropolitana", "arancel": "$2.921.000"},
     {"carrera": "Diseño Digital Y Web", "institucion": "Ip Inacap", "tipo": "IP", "acreditacion": "7 años", "region": "O'Higgins", "arancel": "$2.921.000"},
     {"carrera": "Diseño Digital Y Web", "institucion": "Ip Inacap", "tipo": "IP", "acreditacion": "7 años", "region": "O'Higgins", "arancel": "$2.921.000"},
     {"carrera": "Diseño Digital Y Web", "institucion": "Ip Inacap", "tipo": "IP", "acreditacion": "7 años", "region": "Maule", "arancel": "$2.921.000"},
