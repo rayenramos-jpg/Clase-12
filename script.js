@@ -9,7 +9,6 @@ new Chart(document.getElementById("tipos"), {
                     { x: "Universidades", y: 50 },
                     { x: "Centros de Formación Técnica (CFT)", y: 6 },
                 ],
-                // IP destacado; los otros dos más apagados para reforzar la concentración
                 backgroundColor: ["rgba(232,87,26,1)", "rgba(241,142,45,.5)", "rgba(241,142,45,.5)"],
                 borderColor: "rgba(232,87,26,1)",
                 borderWidth: 1,
@@ -64,12 +63,7 @@ new Chart(document.getElementById("tipos"), {
         },
     },
 });
- 
-/* ──────────────────────────────────────────────
-   VISUALIZACIÓN 4 — Arancel anual promedio por tipo
-   Canvas en el HTML: <canvas id="aranceles"></canvas>
-   Promedios reales (CLP) calculados desde acceso-sup
-   ────────────────────────────────────────────── */
+
 new Chart(document.getElementById("aranceles"), {
     type: "bar",
     data: {
@@ -81,7 +75,6 @@ new Chart(document.getElementById("aranceles"), {
                     { x: "IP", y: 2894766 },
                     { x: "Universidades", y: 6102443 },
                 ],
-                // Universidades destacado: cuestan más del doble que un IP
                 backgroundColor: ["rgba(241,142,45,.5)", "rgba(241,142,45,.5)", "rgba(232,87,26,1)"],
                 borderColor: "rgba(232,87,26,1)",
                 borderWidth: 1,
@@ -108,7 +101,6 @@ new Chart(document.getElementById("aranceles"), {
                 ticks: {
                     font: { family: "'Georama', sans-serif", size: 11 },
                     color: "#999",
-                    // Eje en millones para que sea legible: 2M, 4M, 6M…
                     callback: function (value) {
                         return "$" + (value / 1000000).toLocaleString("es-CL") + "M";
                     },
@@ -140,4 +132,36 @@ new Chart(document.getElementById("aranceles"), {
         },
     },
 });
- 
+
+const t = document.querySelector("#este");
+
+fetch("datos.json")
+    .then((respuesta) => {
+        if (!respuesta.ok) throw new Error("Error HTTP: " + respuesta.status);
+        return respuesta.json();
+    })
+    .then((datos) => {
+        datos.forEach((x, i) => {
+            t.innerHTML += `<tr>
+                <td>${i + 1}</td>
+                <td>${x.carrera}</td>
+                <td>${x.institucion}</td>
+                <td>${x.tipo}</td>
+                <td>${x.acreditacion}</td>
+                <td>${x.region}</td>
+                <td>${x.arancel}</td>
+            </tr>`;
+        });
+    })
+    .catch((error) => console.error("Algo salió mal:", error));
+
+function sinAcentos(str) {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
+document.getElementById("elInput").addEventListener("keyup", function () {
+    const valor = sinAcentos(this.value.toLowerCase());
+    document.querySelectorAll("#este tr").forEach(function (fila) {
+        fila.style.display = sinAcentos(fila.textContent.toLowerCase()).includes(valor) ? "" : "none";
+    });
+});
